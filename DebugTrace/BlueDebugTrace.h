@@ -55,7 +55,7 @@
  * @Param nLen
  */
 /* ----------------------------------------------------------------------------*/
-void PrintBuffer(void* pBuff, unsigned int nLen) {
+inline void PrintBuffer(void* pBuff, unsigned int nLen) {
   unsigned int i = 0;
 
   const int nBytePerLine = 16;
@@ -103,7 +103,7 @@ void PrintBuffer(void* pBuff, unsigned int nLen) {
  * @Returns
  */
 /* ----------------------------------------------------------------------------*/
-int PrintfByte(char p[], int len) {
+inline int PrintfByte(char p[], int len) {
   int m = 0;
   for (m = 0; m < len; m++)
     printf("-%c-", p[m]);

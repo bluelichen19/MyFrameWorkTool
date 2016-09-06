@@ -17,26 +17,31 @@
  */
 #ifndef _BLUE_SOURCE_LOG_H_
 #define _BLUE_SOURCE_LOG_H_
+#ifndef _DEBUG_
+#define _DEBUG_
+#endif
 #include <stdio.h>
 #include <string.h>
 class BLUESourceLogBase {
  public:
-  BLUESourceLogBase(){};
-  virtual ~BLUESourceLogBase(){};
+  inline BLUESourceLogBase(){};
+  inline virtual ~BLUESourceLogBase(){};
 };
 
 class BLUESourceLog : public BLUESourceLogBase {
  public:
-  BLUESourceLog(char* function_name, char* file_path, int line_no)
+  inline BLUESourceLog(char* function_name, char* file_path, int line_no)
       : mFunctionName(function_name),
         mFilePath(file_path),
         mLineNumber(line_no) {
+#ifdef _DEBUG_
     printf("====>BlueSourceLog function:%s==>line:%d==>path:%s\n",
            mFunctionName, mLineNumber, mFilePath);
+#endif
   };
   // TODO
   int SourceLogPrintf();
-  ~BLUESourceLog(){};
+  inline ~BLUESourceLog(){};
 
  private:
   char* mFunctionName;
