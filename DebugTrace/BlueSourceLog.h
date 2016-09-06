@@ -31,8 +31,8 @@ class BLUESourceLog : public BLUESourceLogBase {
       : mFunctionName(function_name),
         mFilePath(file_path),
         mLineNumber(line_no) {
-    printf("====>BlueSourceLog function:%s==>line:%d==>path:%s\n", mFunctionName,
-           mLineNumber, mFilePath);
+    printf("====>BlueSourceLog function:%s==>line:%d==>path:%s\n",
+           mFunctionName, mLineNumber, mFilePath);
   };
   // TODO
   int SourceLogPrintf();
