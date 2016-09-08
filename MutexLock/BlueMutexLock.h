@@ -12,8 +12,12 @@ class MUTEX_LOCK_BASE {
 class BLUEMutexLock : public MUTEX_LOCK_BASE {
  public:
   inline BLUEMutexLock(pthread_mutex_t& mutex, BLUESourceLog& blue_source_log)
-      : mMutexKey(mutex), mBLUESourceLog(blue_source_log){};
-  ~BLUEMutexLock(){};
+      : mMutexKey(mutex), mBLUESourceLog(blue_source_log){
+         pthread_mutex_lock(&mMutexKey); 
+      };
+  ~BLUEMutexLock(){
+      pthread_mutex_unlock(&mMutexKey);
+  };
 
  private:
   pthread_mutex_t& mMutexKey;
