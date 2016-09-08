@@ -365,9 +365,12 @@
 
 //整理自http://herowill.blog.sohu.com/104335275.html
 static int m=0;
+pthread_mutex_t mutex_lock;
 void* func1(void* p)
 {
     int i;
+    BLUESourceLog mBlueSourceLog(const_cast<char*>(__FUNCTION__),const_cast<char*>(__FILE__),__LINE__);
+    BLUEMutexLock mBlueMuetxLock(mutex_lock,mBlueSourceLog);
     for(i=0;i<5;i++)
         printf("func1 m is %d\n",m+i);
     return 0;
@@ -375,6 +378,8 @@ void* func1(void* p)
 void* func2(void* p)
 {
     int i;
+    BLUESourceLog mBlueSourceLog(const_cast<char*>(__FUNCTION__),const_cast<char*>(__FILE__),__LINE__);
+    BLUEMutexLock mBlueMuetxLock(mutex_lock,mBlueSourceLog);
     for(i=0;i<5;i++)
         printf("func2 m is %d\n",m+i);
     return 0;
@@ -382,6 +387,8 @@ void* func2(void* p)
 void* func3(void* p)
 {
     int i;
+    BLUESourceLog mBlueSourceLog(const_cast<char*>(__FUNCTION__),const_cast<char*>(__FILE__),__LINE__);
+    BLUEMutexLock mBlueMuetxLock(mutex_lock,mBlueSourceLog);
     for(i=0;i<5;i++)
         printf("func3 m is %d\n",m-i-1);
     return 0;
@@ -392,7 +399,6 @@ int main(int argc,char* argv[])
     pthread_t pthread_key1;
     pthread_t pthread_key2;
     pthread_t pthread_key3;
-    pthread_mutex_t mutex_lock;
     pthread_mutex_init(&mutex_lock,NULL);
     pthread_create(&pthread_key1,NULL,&func1,NULL);
     pthread_create(&pthread_key2,NULL,&func2,NULL);
